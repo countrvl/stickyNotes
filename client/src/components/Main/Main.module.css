@@ -1,0 +1,8 @@
+.content {}
+
+.btnAddNote {
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px 0px rgba(34, 37, 80, 0.37);
+  background-color: blue;
+}
