@@ -14,9 +14,8 @@
   margin: 5px;
   border: 1px solid blue;
   border-radius: 5px;
-  background-color: transparent;
+  background: white;
   box-shadow: 4px 4px 5px 0px rgba(34, 37, 80, 0.37);
-
 }
 
 .sticky_note_header {
