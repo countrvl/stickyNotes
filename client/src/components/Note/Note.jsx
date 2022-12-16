@@ -44,6 +44,7 @@ function Note({ id, onClose }) {
       <div className={styles.sticky_note_content}>
         <TextArea
           className={styles.sticky_note_textarea}
+          id={id}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           // autoSize={{
