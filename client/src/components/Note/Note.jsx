@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import styles from './Note.module.css';
+import { addNote, editNote } from '../../api/notesApi';
 
 const { TextArea } = Input;
 
@@ -19,9 +20,16 @@ function Note({ id, onClose }) {
       x: 5,
       y: 5,
     }));
+
+    addNote({
+      id,
+      value,
+      x: 5,
+      y: 5
+    });
   }, []);
 
-  const onChange = (e) => {
+  const onChange = async (e) => {
     setValue(e.target.value);
     const obj = {
       ...JSON.parse(localStorage.getItem(`${id}`)),
@@ -30,6 +38,12 @@ function Note({ id, onClose }) {
       y: e.clientY - dy,
     };
     localStorage.setItem(`${id}`, JSON.stringify(obj));
+    await editNote({
+      id,
+      value,
+      x: e.clientX - dx,
+      y: e.clientY - dy,
+    });
   };
 
   function handleMouseDown(e) {

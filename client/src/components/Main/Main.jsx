@@ -3,12 +3,16 @@ import { Button } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import style from './Main.module.css';
 import Note from '../Note/Note';
+import getNotes, { delNote } from '../../api/notesApi';
 
 function Main() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     localStorage.clear();
+    getNotes().then((res) => {
+      setNotes(res);
+    });
   }, []);
 
   function addNote() {
@@ -19,9 +23,10 @@ function Main() {
       },
     ]);
   }
-  function removeNote(noteId) {
+  async function removeNote(noteId) {
     setNotes(notes.filter((el) => el.id !== noteId));
     localStorage.removeItem(`${noteId}`);
+    await delNote(noteId);
   }
   return (
     <>
